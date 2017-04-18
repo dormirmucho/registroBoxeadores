@@ -108,7 +108,7 @@ namespace WindowsFormsApp1
             comando.Parameters.AddWithValue("@nombre", nombre);
             comando.ExecuteNonQuery();
 
-            cliente.Close();
+            
 
         }
     }
