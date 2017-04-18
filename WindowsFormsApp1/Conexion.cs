@@ -106,8 +106,10 @@ namespace WindowsFormsApp1
             MySqlCommand comando = new MySqlCommand(consulta, cliente);
 
             comando.Parameters.AddWithValue("@nombre", nombre);
+
             comando.ExecuteNonQuery();
 
+            Console.WriteLine("BANANA");
             
 
         }
