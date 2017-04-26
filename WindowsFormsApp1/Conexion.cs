@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data;
 using MySql.Data.MySqlClient;
-
+using System.Data;
 
 namespace WindowsFormsApp1
 {
@@ -92,7 +92,8 @@ namespace WindowsFormsApp1
             comando.Parameters.AddWithValue("@user", user);
             comando.Parameters.AddWithValue("@pass", pass);
             comando.ExecuteNonQuery();
-
+           
+            
             cliente.Close();
         }
         public static void crearBoxeador(string nombre)
@@ -110,8 +111,24 @@ namespace WindowsFormsApp1
             comando.ExecuteNonQuery();
 
             Console.WriteLine("BANANA");
+
+
             
 
+        }
+        public static void mostrarGrid()
+        {
+            string datoConexion = "Server=localhost;Database=combates;User ID=root;Password=agustito;Pooling=false;";
+            MySqlConnection cliente = new MySqlConnection(datoConexion);
+            cliente.Open();
+            string consulta = "SELECT id_box,id_combats,id_victories,id_ko,best_assault,best_time,id_box_rival FROM clasificacion;";
+            MySqlCommand comando = new MySqlCommand(consulta, cliente);
+
+            MySqlDataAdapter msda = new MySqlDataAdapter(comando);
+            MySqlDataReader reader = comando.ExecuteReader();
+            DataTable dt = new DataTable("clasificacion");
+            msda.Fill(dt);
+               
         }
     }
 }
